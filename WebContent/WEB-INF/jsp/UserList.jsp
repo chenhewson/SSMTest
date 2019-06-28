@@ -6,7 +6,25 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+    <script src="./common/js/jquery-2.1.4/jquery-1.8.0.min.js"></script>
+    <script src="./common/js/jquery-2.1.4/layer/layer.js"></script>
+	<title>Insert title here</title>
+	<script type="text/javascript">
+    function add(){
+    	//查看是否取到用户名称
+     /*  alert(tf);
+      console.log(tf); */
+      $.ajax({
+			type:"post",
+			url:"add.do",
+			data:$("#addForm").serialize(),	
+			success:function(result){
+				layer.msg(result),setTimeout(3000);	     
+			}
+		}); 
+    }
+    	
+    </script>
 </head>
 <body>
 <tr>用户列表</tr>
@@ -27,19 +45,19 @@
 </tr>
 </table>
 </c:forEach>
-<div id="delete">
-   <form action="delete.do" method="post">
+
+   <form id="DeleteForm" action="delete.do" method="post">
 		<input type="text" name="id" placeholder="要删除的ID"/>
 		<input type="submit" value="删除"/>
     </form>
-</div>
 
-<div id="add">
-   <form action="" method="post">
+
+
+   <form id="addForm" method="post" >
 		<input type="text" name="username" placeholder="用户名"/>
 		<input type="password" name="password" placeholder="密码"/>
-		<input type="submit" onclick="" value="新增"/>
+		<input type="submit" Onclick="add()" value="新增"/>
     </form>
-</div>
+
 </body>
 </html>

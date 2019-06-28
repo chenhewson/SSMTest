@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ <mapper namespace="com.ssm.dao.AddUser">
+ <insert id="add" parameterType="map">
+ 		<selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+			select LAST_INSERT_ID()
+		</selectKey>
+ 		
+ 		INSERT INTO 
+ 			t_user 
+ 			(username,password)
+ 		VALUES 
+ 			(#{0},#{1})
+</insert>
+ </mapper>
