@@ -15,7 +15,6 @@ public class ListServiceImpl implements ListService{
 	private ShowList showlist;
 	@Override
 	public List<UserList> showlist() {
-		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaa");
 		List<UserList> list=showlist.showlist();
 		return list;
 	}

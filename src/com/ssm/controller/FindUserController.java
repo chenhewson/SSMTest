@@ -22,6 +22,7 @@ public class FindUserController {
 	public void login(String username,String password,HttpServletResponse rep,HttpServletRequest req,HttpSession session) throws ServletException, IOException{
 		System.out.println(username + password);
 		String result=userService.findUser(username,password);
+		req.getSession().setAttribute("loginusername", username);//已登陆的用户名
 		if (result.equals("successed")){
 			session.setAttribute("username", username);
 			req.getRequestDispatcher("\\WEB-INF\\jsp\\success.jsp").forward(req, rep);

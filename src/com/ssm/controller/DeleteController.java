@@ -23,11 +23,15 @@ public class DeleteController {
 	private DeleteService deleteservice;
 	@ResponseBody
 	@RequestMapping("delete.do")
-	public void showlist(String username,String password,HttpServletResponse rep,HttpServletRequest req) throws ServletException, IOException{
+	public String deleteByid(String username,String password,HttpServletResponse rep,HttpServletRequest req) throws ServletException, IOException{
 		HttpSession session = req.getSession();
+		session.setAttribute("username", username);
+		session.setAttribute("username", username);
 		String id=req.getParameter("id");
+		System.out.println(id);
 		deleteservice.deleteuser(id);
-		req.getRequestDispatcher("showlist.jsp").forward(req, rep);
+		return "Success";
+
 	}
 	
 }

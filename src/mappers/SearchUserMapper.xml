@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ <mapper namespace="com.ssm.dao.SearchUser">
+ <select id="search" parameterType="map" resultType="com.ssm.entity.UserList">
+ 		SELECT 
+			*
+		FROM
+			t_user
+		where
+			username=#{0} or id=#{1}
+</select>
+ </mapper>

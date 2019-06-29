@@ -1,5 +1,8 @@
 package com.ssm.controller;
 
+import java.io.IOException;
+
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,14 +20,10 @@ public class AddController {
 	private AddService addservice;
 	@ResponseBody
 	@RequestMapping("add.do")
-	public String addUser(String username,String password,HttpServletResponse rep,HttpServletRequest req) {
+	public String addUser(String username,String password,HttpServletResponse rep,HttpServletRequest req) throws ServletException, IOException {
+		System.out.println(username);
 		int id=addservice.adduser(username,password);
-		System.out.println("id="+id);
-		if(id==1)
-		{
-			return "success";
-		}
-		else
-			return "fail";
+		System.out.println("新增的用户id="+id);
+		return "Success";
 	}
 }

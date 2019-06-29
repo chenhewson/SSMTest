@@ -24,6 +24,7 @@ public class ListController {
 	@ResponseBody
 	@RequestMapping("showlist.do")
 	public void showlist(String username,String password,HttpServletResponse rep,HttpServletRequest req) throws ServletException, IOException{
+		System.out.println(username);
 		HttpSession session = req.getSession();
 		List<UserList> list=listservice.showlist();
 		req.setAttribute("list", list);
