@@ -37,6 +37,24 @@ function watch(id,username) {
 	});
 }
 
+function Mywatch() {
+	$.ajax({
+		type : "post",
+		url : "Mywatch.do",
+		success : function(result) {
+			if (result == "Success") {
+				layer.msg(result), setTimeout(function() {
+					window.location = "Mywatch.jsp";
+				}, 150);
+			} else {
+				layer.msg(result), setTimeout(function() {
+					window.location = "showlist.do";
+				}, 150);
+			}
+		}
+	});
+}
+
 	function deletebyid(id) {
 		var id = id;
 		$.ajax({
@@ -66,6 +84,47 @@ function watch(id,username) {
 			type : "post",
 			url : "add.do",
 			data:$("#addForm").serialize(),
+			dataType:"json",
+			success : function(result) {
+				if (result == "Success") {
+					layer.msg(result), setTimeout(function() {
+						window.location = "showlist.do";
+					}, 150);
+				} else {
+					layer.msg(result), setTimeout(function() {
+						window.location = "showlist.do";
+					}, 150);
+				}
+			}
+		});
+	}
+	
+	function search() {
+		$.ajax({
+			type : "post",
+			url : "search.do",
+			data:$("#searchForm").serialize(),
+			dataType:"json",
+			success : function(result) {
+				if (result == "Success") {
+					layer.msg(result), setTimeout(function() {
+						window.location = "SearchUser.jsp";
+					}, 150);
+				} else {
+					layer.msg(result), setTimeout(function() {
+						window.location = "showlist.do";
+					}, 150);
+				}
+			}
+		});
+	}
+	
+	function updatauser() {
+		$.ajax({
+			type : "post",
+			url : "updatauser.do",
+			data:$("#updataForm").serialize(),
+			dataType:"json",
 			success : function(result) {
 				if (result == "Success") {
 					layer.msg(result), setTimeout(function() {
@@ -82,14 +141,17 @@ function watch(id,username) {
 </script>
 </head>
 <body>
-	<form id="searchForm" action="search.do" method="post">
-		<input type="text" name="infomation" placeholder="输入用户名或id" /> <input
-			type="submit" value="搜索" />
+<div align="center">
+	<strong>欢迎你，${loginusername}</strong>
+	<form id="searchForm" method="post">
+		<input type="text" name="infomation" placeholder="输入用户名或id" /> 
+		<input type="button" onclick="search()" value="搜索" />
 	</form>
-	<form id="searchForm"  method="post">
-		<input type="submit" onclick="" value="我的关注" />
+	<form id="searchForm" action="Mywatch.do" method="post">
+		<input type="submit"  value="我的关注" />
 	</form>
-	<table border="2" align="center" text-align="center">
+		
+	<table border="2"  text-align="center">
 		<tr>
 			<td>ID</td>
 			<td>Name</td>
@@ -99,16 +161,12 @@ function watch(id,username) {
 
 		<c:forEach items="${list}" var="item" varStatus="st">
 			<c:if test="${st.count%2 eq 1}">
-				<tr bgcolor="#F2F2F2" border-color="#666666">
+				<tr bgcolor="#d3d7d4" border-color="#666666">
 					<td>${item.id}</td>
 					<td>${item.username}</td>
 					<td>${item.password}</td>
-					<td><a href="javascript:void(0);"
-						onclick="deletebyid('${item.id}')">删除</a></td>
-					<td><a href="javascript:void(0);"
-						onclick="watch('${item.id}','${item.username}')">关注</a></td>
-					<td><a href="javascript:void(0);"
-						onclick="updata('${item.id}')">修改</a></td>
+					<td><input type="button" onclick="deletebyid('${item.id}')" value="删除"></td>
+					<td><input type="button" onclick="watch('${item.id}','${item.username}')" value="关注"></td>
 				</tr>
 			</c:if>
 
@@ -118,21 +176,24 @@ function watch(id,username) {
 						<td>${item.id}</td>
 						<td>${item.username}</td>
 						<td>${item.password}</td>
-						<td><a href="javascript:void(0);"
-							onclick="deletebyid('${item.id}')">删除</a></td>
-						<td><a href="javascript:void(0);"
-							onclick="watch('${item.id}','${item.username}')">关注</a></td>
-						<td><a href="javascript:void(0);"
-							onclick="updata('${item.id}')">修改</a></td>
+					<td><input type="button" onclick="deletebyid('${item.id}')" value="删除"></td>
+					<td><input type="button" onclick="watch('${item.id}','${item.username}')" value="关注"></td>
 					</tr>
 				</c:when>
 			</c:choose>
 		</c:forEach>
 	</table>
 	<form id="addForm" method="post">
-		<input type="text" name="username" placeholder="用户名" /> <input
-			type="password" name="password" placeholder="密码" /> <input
-			type="submit" onclick="adduser()" value="新增" />
+		<input type="text" name="username" placeholder="用户名" /> 
+		<input type="password" name="password" placeholder="密码" /> 
+		<input type="button" onclick="adduser()" value="新增" />
 	</form>
+	<form id="updataForm" method="post">
+		<input type="text" name="updataid" placeholder="id" /> 
+		<input type="password" name="newusername" placeholder="新用户名" /> 
+		<input type="password" name="newpassword" placeholder="新密码" /> 
+		<input type="button" onclick="updatauser()" value="修改" />
+	</form>
+</div>
 </body>
 </html>

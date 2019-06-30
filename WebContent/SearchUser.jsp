@@ -13,6 +13,8 @@
 	<title>Insert title here</title>
 </head>
 <body>
+	<div align="center">
+	<strong>搜索结果</strong><br>
 	<table border="2" align="center" text-align="center">
 			<tr>
 				<td>ID</td>
@@ -22,7 +24,7 @@
 
 			<c:forEach items="${searchlist}" var="item" varStatus="st">
 				<c:if test="${st.count%2 eq 1}">
-					<tr bgcolor="#F2F2F2" border-color="#666666">
+					<tr bgcolor="#d3d7d4" border-color="#666666">
 						<td>${item.id}</td>
 						<td>${item.username}</td>
 						<td>${item.password}</td>
@@ -40,5 +42,6 @@
 				</c:choose>
 			</c:forEach>
 		</table>
+		</div>
 </body>
 </html>

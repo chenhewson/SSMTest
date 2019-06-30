@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	${msg}
+	登陆失败！
 </body>
 </html>

@@ -13,7 +13,6 @@ public class UserServiceImpl implements UserService{
 	private UserDao userDao;
 	@Override
 	public String findUser(String username, String password) {
-		System.out.println(username);
 		UserInf user=userDao.findByName(username);
 		if(user==null)
 			return "无效用户名";

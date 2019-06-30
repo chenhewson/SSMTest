@@ -31,7 +31,6 @@ public class DeleteController {
 		System.out.println(id);
 		deleteservice.deleteuser(id);
 		return "Success";
-
 	}
 	
 }
